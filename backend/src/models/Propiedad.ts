@@ -13,6 +13,7 @@ export interface IPropiedad extends Document {
   recamaras: number;
   banos: number;
   metros: number;
+   metrosTerreno: number;
   estacionamientos: number;
   fotos: string[];
   amenidades: string[];
@@ -40,6 +41,7 @@ const PropiedadSchema = new Schema<IPropiedad>(
     recamaras: { type: Number, default: 0 },
     banos: { type: Number, default: 0 },
     metros: { type: Number, default: 0 },
+    metrosTerreno: { type: Number, default: 0 },
     estacionamientos: { type: Number, default: 0 },
     fotos: [{ type: String }],
     amenidades: [{ type: String }],

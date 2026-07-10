@@ -67,10 +67,9 @@ export const crearPropiedad = async (req: AuthRequest, res: Response): Promise<v
   try {
     const {
       titulo, descripcion, precio, moneda, tipo, tipoPropiedad,
-      zona, direccion, recamaras, banos, metros, estacionamientos,
+      zona, direccion, recamaras, banos, metros, metrosTerreno, estacionamientos,
       fotos, amenidades
     } = req.body;
-
     if (!titulo || !descripcion || !precio || !tipo || !tipoPropiedad || !zona) {
       res.status(400).json({ mensaje: 'Faltan campos requeridos' });
       return;
@@ -85,6 +84,7 @@ export const crearPropiedad = async (req: AuthRequest, res: Response): Promise<v
       recamaras: recamaras || 0,
       banos: banos || 0,
       metros: metros || 0,
+       metrosTerreno: metrosTerreno || 0,
       estacionamientos: estacionamientos || 0,
       fotos: fotos || [],
       amenidades: amenidades || []

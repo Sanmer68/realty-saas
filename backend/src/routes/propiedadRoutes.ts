@@ -1,19 +1,21 @@
 import { Router } from 'express';
 import {
-  crearLeadPublico,
-  getMisLeads,
-  getLead,
-  actualizarLead,
-  getStats
-} from '../controllers/leadController';
+  getPropiedadesPublico,
+  getMisPropiedades,
+  getPropiedad,
+  crearPropiedad,
+  actualizarPropiedad,
+  eliminarPropiedad
+} from '../controllers/propiedadController';
 import { protect } from '../middleware/auth';
 
 const router = Router();
 
-router.post('/publico/:slug', crearLeadPublico);
-router.get('/stats', protect, getStats);
-router.get('/', protect, getMisLeads);
-router.get('/:id', protect, getLead);
-router.put('/:id', protect, actualizarLead);
+router.get('/publico/:slug', getPropiedadesPublico);
+router.get('/', protect, getMisPropiedades);
+router.get('/:id', protect, getPropiedad);
+router.post('/', protect, crearPropiedad);
+router.put('/:id', protect, actualizarPropiedad);
+router.delete('/:id', protect, eliminarPropiedad);
 
 export default router;
