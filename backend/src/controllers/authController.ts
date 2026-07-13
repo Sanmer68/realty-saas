@@ -145,3 +145,29 @@ export const updatePerfil = async (req: AuthRequest, res: Response): Promise<voi
     res.status(500).json({ mensaje: 'Error en el servidor', error });
   }
 };
+// @desc    Obtener datos públicos del asesor (para su landing)
+// @route   GET /api/auth/publico/:slug
+export const getPerfilPublico = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { slug } = req.params;
+    const tenant = await Tenant.findOne({ slug, activo: true });
+
+    if (!tenant) {
+      res.status(404).json({ mensaje: 'Asesor no encontrado' });
+      return;
+    }
+
+    res.json({
+      nombre: tenant.nombre,
+      slug: tenant.slug,
+      telefono: tenant.telefono,
+      whatsapp: tenant.whatsapp,
+      foto: tenant.foto,
+      bio: tenant.bio,
+      zona: tenant.zona,
+      configuracion: tenant.configuracion
+    });
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error en el servidor', error });
+  }
+};
